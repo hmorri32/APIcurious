@@ -1,6 +1,6 @@
 module SpecHelperMethods
   def user
-    @user ||= create(:user)
+    create(:user)
   end
 
   def mock_login

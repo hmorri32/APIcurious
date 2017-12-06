@@ -8,11 +8,17 @@ class GitHubService
     Faraday.new(url: "https://api.github.com") do |f|
       f.headers["Accept"] = "application/vnd.github.cloak-preview"
       f.adapter Faraday.default_adapter
+      # f.token_auth(user.oauth_token)
+      # f.authorization :token, user.oauth_token
     end
   end
 
   def follower_count
     get_json("/users/#{user.username}")[:followers]
+  end
+
+  def following_count
+    get_json("/users/#{user.username}")[:following]
   end
 
   private

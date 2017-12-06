@@ -18,5 +18,13 @@ RSpec.describe GitHubService do
         end
       end
     end
+
+    describe "#following_count" do
+      it "returns the number of following" do
+        VCR.use_cassette("GitHubService/following_count", :match_requests_on => [:method]) do
+          expect(github.following_count).to eq(0)
+        end
+      end
+    end
   end
 end

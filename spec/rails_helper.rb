@@ -26,6 +26,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.filter_sensitive_data('<SUH_DUDE>') { ENV["GITHUB_CLIENT_ID"]  }
   config.filter_sensitive_data('<SUH_DUDE>') { ENV["GITHUB_CLIENT_SECRET"]  }
+  config.default_cassette_options = {:record => :new_episodes}
 end
 
 RSpec.configure do |config|
