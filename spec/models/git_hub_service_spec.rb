@@ -13,7 +13,7 @@ RSpec.describe GitHubService do
   describe "class methods" do
     describe "#follower_count" do
       it 'returns a users follower count' do
-        VCR.use_cassette("GitHubService/follower_count", :record => :new_episodes) do
+        VCR.use_cassette("GitHubService/follower_count", :match_requests_on => [:method]) do
           expect(github.follower_count).to eq(2)
         end
       end
