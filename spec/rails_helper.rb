@@ -22,7 +22,8 @@ DatabaseCleaner.strategy = :truncation
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/cassettes"
   config.hook_into :webmock
-  config.filter_sensitive_data('<SUH_DUDE>') { ENV["PROPUBLICA_API_KEY"] }
+  config.filter_sensitive_data('<SUH_DUDE>') { ENV["GITHUB_CLIENT_ID"]  }
+  config.filter_sensitive_data('<SUH_DUDE>') { ENV["GITHUB_CLIENT_SECRET"]  }
 end
 
 RSpec.configure do |config|

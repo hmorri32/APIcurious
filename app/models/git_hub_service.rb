@@ -11,17 +11,16 @@ class GitHubService
     end
   end
 
-  def gh_params
-    { client_id: ENV["GITHUB_CLIENT_ID"], client_secret: ENV["GITHUB_CLIENT_SECRET"] }
-  end
-
   def follower_count
-    data = get_json("/users/#{@user.username}")
-    binding.pry
+    get_json("/users/#{user.username}")[:followers]
   end
 
   private
-    attr_reader :client
+    attr_reader :client, :user
+
+    def gh_params
+      { client_id: ENV["GITHUB_CLIENT_ID"], client_secret: ENV["GITHUB_CLIENT_SECRET"] }
+    end
 
     def get_json(url)
       response = client.get(url, gh_params)
