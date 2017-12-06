@@ -10,4 +10,8 @@ class User < ApplicationRecord
       user.save!
     end
   end
+
+  def self.service(user)
+    @service ||= GitHubService.new(user)
+  end
 end

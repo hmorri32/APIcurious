@@ -6,18 +6,18 @@ require 'rspec/rails'
 require 'support/factory_bot.rb'
 require 'vcr'
 require 'support/spec_helper_methods.rb'
+require 'database_cleaner'
 
 ActiveRecord::Migration.maintain_test_schema!
-require 'database_cleaner'
 
 DatabaseCleaner.strategy = :truncation
 
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
+# Shoulda::Matchers.configure do |config|
+#   config.integrate do |with|
+#     with.test_framework :rspec
+#     with.library :rails
+#   end
+# end
 
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/cassettes"

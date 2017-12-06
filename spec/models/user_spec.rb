@@ -33,4 +33,14 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  # describe "class methods" do
+  #   describe '#follower_count' do
+  #     it "returns a user's follower count" do
+  #       VCR.use_cassette("follower_count") do
+  #         # expect(user.follower)
+  #       end
+  #     end
+  #   end
+  # end
 end
