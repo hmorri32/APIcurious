@@ -4,6 +4,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'support/factory_bot.rb'
+require 'vcr'
 
 ActiveRecord::Migration.maintain_test_schema!
 require 'database_cleaner'
@@ -15,6 +16,12 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/cassettes"
+  config.hook_into :webmock
+  config.filter_sensitive_data('<SUH_DUDE>') { ENV["PROPUBLICA_API_KEY"] }
 end
 
 RSpec.configure do |config|
