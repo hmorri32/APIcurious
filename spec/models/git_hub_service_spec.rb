@@ -26,5 +26,13 @@ RSpec.describe GitHubService do
         end
       end
     end
+
+    describe "#find_starred_repos" do
+      it "returns the starred repos" do
+        VCR.use_cassette("GitHubService/find_starred_repos", :match_requests_on => [:method]) do
+          expect(github.find_starred_repos.count).to eq(15)
+        end
+      end
+    end
   end
 end

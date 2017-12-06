@@ -10,6 +10,7 @@ class GitHubService
       f.adapter Faraday.default_adapter
       # f.token_auth(user.oauth_token)
       # f.authorization :token, user.oauth_token
+      # conn.request :oauth2, 'token'
     end
   end
 
@@ -19,6 +20,10 @@ class GitHubService
 
   def following_count
     get_json("/users/#{user.username}")[:following]
+  end
+
+  def find_starred_repos
+    get_json("/users/#{@user.username}/starred")
   end
 
   private
