@@ -5,6 +5,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'support/factory_bot.rb'
 require 'vcr'
+require 'support/spec_helper_methods.rb'
 
 ActiveRecord::Migration.maintain_test_schema!
 require 'database_cleaner'
@@ -29,6 +30,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include SpecHelperMethods
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
