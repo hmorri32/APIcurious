@@ -17,34 +17,55 @@ class Hello extends Component {
     };
   }
 
-  componentWillMount() {
-    this.setState({ coolStuff: [1, 2, 3, 4] });
+  fetchFollowerCount() {
+    fetch("/api/v1/follower_count", {
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    })
+      .then(response => response.json())
+      .then(json => this.setState({ followers: json }));
   }
 
-  componentDidMount() {
-    fetch('/api/v1/follower_count', {
-      credentials: 'same-origin',
+  fetchUserJSON() {
+    fetch("/api/v1/user", {
+      credentials: "same-origin",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
-      method: 'GET'})
-    .then(response => response.json())
-    .then((json) => this.setState({ followers: json }))
-    .then(() => console.log(this.state))
+      method: "GET"
+    })
+      .then(response => response.json())
+      .then(json => this.setState({ user: json }));
+  }
+
+  componentWillMount() {
+    this.fetchFollowerCount();
+    this.fetchUserJSON();
   }
 
   mapFollowers() {
-    const { followers } = this.state
-    followers.map(follower => {
+    followers.map(follower => {});
+  }
 
-    })
+  renderUserInfo() {
+    const { user } = this.state;
+    return (
+      <div>
+        <p>{user.username}</p>
+        <img src={user.avatar_url} alt="" />
+      </div>
+    );
   }
 
   render() {
     return (
       <div className="background-city">
-        <p> {this.state.name} </p>
+        {this.state.user && this.renderUserInfo()}
       </div>
     );
   }

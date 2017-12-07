@@ -1,6 +1,6 @@
 class Api::V1::GitHubController < ApplicationController
   def user
-    render json: current_user
+    render json: { username: current_user.username, avatar_url: current_user.avatar_url }
   end
 
   def follower_count
