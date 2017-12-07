@@ -30,7 +30,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'has an oath_token' do
-        expect(user.oauth_token).to eq('1234')
+        expect(user.oauth_token).to eq(ENV["GITHUB_TOKEN"])
       end
     end
   end
@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
     describe '#follower_count' do
       it "returns a user's follower count" do
         VCR.use_cassette("user/follower_count") do
-          expect(user.follower_count).to eq(2)
+          expect(user.follower_count.count).to eq(2)
         end
       end
     end

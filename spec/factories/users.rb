@@ -5,6 +5,6 @@ FactoryBot.define do
     email "coolguy@whatever.com"
     uid "MyString"
     provider "github"
-    oauth_token "1234"
+    oauth_token ENV["GITHUB_TOKEN"]
   end
 end

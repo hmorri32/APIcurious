@@ -6,24 +6,27 @@ class GitHubService
 
   def configure_faraday
     Faraday.new(url: "https://api.github.com") do |f|
-      f.headers["Accept"]        = "application/vnd.github.cloak-preview"
-      f.params["client_id"]     = ENV["GITHUB_CLIENT_ID"]
-      f.params["client_secret"] = ENV["GITHUB_CLIENT_SECRET"]
+      f.headers["Accept"]       = "application/vnd.github.cloak-preview"
+      # f.params["client_id"]     = ENV["GITHUB_CLIENT_ID"]
+      # f.params["client_secret"] = ENV["GITHUB_CLIENT_SECRET"]
       f.adapter Faraday.default_adapter
-      f.headers[:access_token] = user.oauth_token
+      f.params[:access_token]  = user.oauth_token
     end
   end
 
   def follower_count
-    get_json("/users/#{user.username}")[:followers]
+    get_json('/user/followers')
+    # get_json("/users/#{user.username}")[:followers]
   end
 
   def following_count
-    get_json("/users/#{user.username}")[:following]
+    get_json('/user/following')
+    # get_json("/users/#{user.username}")[:following]
   end
 
   def find_starred_repos
-    get_json("/users/#{@user.username}/starred")
+    # get_json("/users/#{@user.username}/starred")
+    get_json("/user/starred")
   end
 
   private
