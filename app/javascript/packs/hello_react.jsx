@@ -27,7 +27,8 @@ class Hello extends Component {
       method: "GET"
     })
       .then(response => response.json())
-      .then(json => this.setState({ followers: json }));
+      .then(json => this.setState({ followers: json }))
+      .catch(e => console.log(e));
   }
 
   fetchUserJSON() {
@@ -40,7 +41,8 @@ class Hello extends Component {
       method: "GET"
     })
       .then(response => response.json())
-      .then(json => this.setState({ user: json }));
+      .then(json => this.setState({ user: json }))
+      .catch(e => console.log(e));
   }
 
   componentWillMount() {
