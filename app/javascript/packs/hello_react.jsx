@@ -13,29 +13,42 @@ class Hello extends Component {
     super();
     this.state = {
       name: "cool guy jones",
-      date: ["array", "of", "stuff"]
+      followers: []
     };
   }
+
   componentWillMount() {
     this.setState({ coolStuff: [1, 2, 3, 4] });
+  }
+
+  componentDidMount() {
+    fetch('/api/v1/follower_count', {
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'GET'})
+    .then(response => response.json())
+    .then((json) => this.setState({ followers: json }))
+    .then(() => console.log(this.state))
+  }
+
+  mapFollowers() {
+    const { followers } = this.state
+    followers.map(follower => {
+
+    })
   }
 
   render() {
     return (
       <div className="background-city">
         <p> {this.state.name} </p>
-        <p> {this.state.date.map(thing => `${thing} `)} </p>
-        <p> {this.state.coolStuff.map(thing => `${thing} `)} </p>
       </div>
     );
   }
 }
-
-// const Hello = props => {
-//   console.log()
-//   return (
-//   <div>Hello { props.name }!</div>
-// )}
 
 document.addEventListener("DOMContentLoaded", () => {
   render(<Hello />, document.getElementById("put_react_here"));
