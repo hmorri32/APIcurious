@@ -17,6 +17,7 @@ gem 'omniauth-github'
 gem 'faraday'
 gem 'figaro'
 gem 'database_cleaner'
+gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

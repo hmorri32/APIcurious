@@ -22,4 +22,6 @@
 /config/application.yml
 
 /spec/vcr/*/*.yml
-/spec/vcr/
+/spec/vcr//public/packs
+/public/packs-test
+/node_modules
