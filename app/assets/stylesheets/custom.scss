@@ -1,0 +1,33 @@
+@import 'variables';
+.container {
+  height: 100vh;
+  background-color: $github-gray-dark;
+}
+
+.login-container {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: $roboto;
+  span {
+    color: $github-whitish;
+    font-weight: $light;
+  }
+  h2 {
+    font-size: 1.5em;
+    font-weight: $bold;
+    color: $github-blue;
+    text-transform: lowercase;
+  }
+  a {
+    margin-top: 50px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $github-whitish;
+    &:hover {
+      font-weight: $bold;
+    }
+  }
+}
