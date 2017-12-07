@@ -11,7 +11,6 @@ RSpec.describe GitHubService do
   end
 
   describe "class methods" do
-    # before { mock_login(user) }
     describe "#follower_count" do
       it 'returns a users follower count' do
         VCR.use_cassette("git_hub_service/follower_count", :match_requests_on => [:method]) do
