@@ -6,6 +6,7 @@
 import React, { Component }      from 'react'
 import { render } from 'react-dom'
 import PropTypes  from 'prop-types'
+import "../stylesheets/stuff.scss"
 
 class Hello extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class Hello extends Component {
 
   render() {
     return (
-      <div>
+      <div className='background-city'>
         <p> { this.state.name } </p>
         <p> { this.state.date.map(thing => `${thing} `) } </p>
         <p> { this.state.coolStuff.map(thing => `${thing} `) } </p>
