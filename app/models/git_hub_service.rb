@@ -6,9 +6,11 @@ class GitHubService
 
   def configure_faraday
     Faraday.new(url: "https://api.github.com") do |f|
-      f.headers["Accept"] = "application/vnd.github.cloak-preview"
+      f.headers["Accept"]        = "application/vnd.github.cloak-preview"
+      f.headers["client_id"]     = ENV["GITHUB_CLIENT_ID"]
+      f.headers["client_secret"] = ENV["GITHUB_CLIENT_SECRET"]
       f.adapter Faraday.default_adapter
-      # f.params[:access_token] = user.oauth_token
+      f.headers[:access_token] = user.oauth_token
     end
   end
 
@@ -28,11 +30,11 @@ class GitHubService
     attr_reader :client, :user
 
     def gh_params
-      { client_id: ENV["GITHUB_CLIENT_ID"], client_secret: ENV["GITHUB_CLIENT_SECRET"] }
+      # { client_id: ENV["GITHUB_CLIENT_ID"], client_secret: ENV["GITHUB_CLIENT_SECRET"] }
     end
 
     def get_json(url)
-      response = client.get(url, gh_params)
+      response = client.get(url)
       JSON.parse(response.body, symbolize_names: true)
     end
 end

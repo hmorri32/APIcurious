@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let!(:user) { create(:user) }
+
   describe "user logs in" do
-    let!(:user) { create(:user) }
-    # before { mock_login(user) }
     describe "with valid credentials" do
       it "returns a valid user" do
         expect(user).to be_a User
@@ -35,13 +35,13 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # describe "class methods" do
-  #   describe '#follower_count' do
-  #     it "returns a user's follower count" do
-  #       VCR.use_cassette("follower_count") do
-  #         # expect(user.follower)
-  #       end
-  #     end
-  #   end
-  # end
+  describe "class methods" do
+    describe '#follower_count' do
+      it "returns a user's follower count" do
+        VCR.use_cassette("user/follower_count") do
+          expect(user.follower_count).to eq(2)
+        end
+      end
+    end
+  end
 end

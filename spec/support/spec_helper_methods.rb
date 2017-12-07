@@ -9,7 +9,7 @@ module SpecHelperMethods
         username:   user.username,
         avatar_url: user.avatar_url
       },
-      'credentials' => { token: user.oauth_token }
+      'credentials' => { token: ENV["GITHUB_TOKEN"] }
     })
   end
 end
