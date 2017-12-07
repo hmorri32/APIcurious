@@ -8,9 +8,7 @@ class GitHubService
     Faraday.new(url: "https://api.github.com") do |f|
       f.headers["Accept"] = "application/vnd.github.cloak-preview"
       f.adapter Faraday.default_adapter
-      # f.token_auth(user.oauth_token)
-      # f.authorization :token, user.oauth_token
-      # conn.request :oauth2, 'token'
+      # f.params[:access_token] = user.oauth_token
     end
   end
 
