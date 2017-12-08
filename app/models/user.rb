@@ -6,6 +6,7 @@ class User < ApplicationRecord
       user.provider    = auth.provider
       user.avatar_url  = auth.info.image
       user.username    = auth.info.name
+      user.nickname    = auth.info.nickname
       user.oauth_token = auth.credentials.token
       user.save!
     end
@@ -17,5 +18,29 @@ class User < ApplicationRecord
 
   def followers
     service.followers
+  end
+
+  def following
+    service.following
+  end
+
+  def starred_repos
+    service.starred_repos
+  end
+
+  def user_repos
+    service.user_repos
+  end
+
+  def user_organizations
+    service.user_organizations
+  end
+
+  def received_events
+    service.received_events
+  end
+
+  def user_events
+    service.user_events
   end
 end
