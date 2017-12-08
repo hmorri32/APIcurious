@@ -23,7 +23,7 @@ class GitHubService
     get_json('/user/following')
   end
 
-  def find_starred_repos
+  def starred_repos
     get_json("/user/starred")
   end
 
@@ -35,12 +35,12 @@ class GitHubService
     get_json('/user/orgs')
   end
 
-  def user_received_events
-    get_json("/users/#{user.username}/received_events?page=1&per_page=100")
+  def received_events
+    get_json("/users/#{user.nickname}/received_events?page=1&per_page=100")
   end
 
   def user_events
-    get_json("/users/#{user.username}/events?page=1&per_page=100")
+    get_json("/users/#{user.nickname}/events?page=1&per_page=100")
   end
 
   private
