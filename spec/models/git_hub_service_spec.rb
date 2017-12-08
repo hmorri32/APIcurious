@@ -27,10 +27,10 @@ RSpec.describe GitHubService do
       end
     end
 
-    describe "#find_starred_repos" do
+    describe "#starred_repos" do
       it "returns the starred repos" do
-        VCR.use_cassette("git_hub_service/find_starred_repos", :match_requests_on => [:method]) do
-          expect(github.find_starred_repos.count).to eq(15)
+        VCR.use_cassette("git_hub_service/starred_repos", :match_requests_on => [:method]) do
+          expect(github.starred_repos.count).to eq(15)
         end
       end
     end
@@ -51,10 +51,10 @@ RSpec.describe GitHubService do
       end
     end
 
-    describe "#user_received_events" do
+    describe "#received_events" do
       it "returns a users events" do
-        VCR.use_cassette('git_hub_service/user_received_events', :match_requests_on => [:method]) do
-          expect(github.user_received_events.length).to eq(98)
+        VCR.use_cassette('git_hub_service/received_events', :match_requests_on => [:method]) do
+          expect(github.received_events.length).to eq(2)
         end
       end
     end
@@ -62,7 +62,7 @@ RSpec.describe GitHubService do
     describe "#user_events" do
       it "returns a users events" do
         VCR.use_cassette('git_hub_service/user_events', :match_requests_on => [:method]) do
-          expect(github.user_events.length).to eq(100)
+          expect(github.user_events.length).to eq(30)
         end
       end
     end
