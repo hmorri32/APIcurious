@@ -36,10 +36,10 @@ RSpec.describe User, type: :model do
   end
 
   describe "class methods" do
-    describe '#follower_count' do
+    describe '#followers' do
       it "returns a user's follower count" do
-        VCR.use_cassette("user/follower_count") do
-          expect(user.follower_count.count).to eq(2)
+        VCR.use_cassette("user/followers") do
+          expect(user.followers.count).to eq(2)
         end
       end
     end

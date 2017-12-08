@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   get 'dashboard',             to: 'users#show'
   delete '/logout',            to: 'sessions#destroy'
 
-  namespace :api, defaults: {format: :json} do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      get 'follower_count', to: "git_hub#follower_count"
-      get 'user',           to: "git_hub#user"
+      get 'followers', to: "git_hub#followers"
+      get 'user',      to: "git_hub#user"
     end
   end
 end

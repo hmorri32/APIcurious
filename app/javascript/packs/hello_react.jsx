@@ -18,7 +18,7 @@ class Hello extends Component {
   }
 
   fetchFollowerCount() {
-    fetch("/api/v1/follower_count", {
+    fetch("/api/v1/followers", {
       credentials: "same-origin",
       headers: {
         Accept: "application/json",

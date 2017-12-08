@@ -15,7 +15,7 @@ class User < ApplicationRecord
     GitHubService.new(self)
   end
 
-  def follower_count
-    service.follower_count
+  def followers
+    service.followers
   end
 end

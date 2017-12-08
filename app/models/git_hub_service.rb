@@ -11,22 +11,36 @@ class GitHubService
       # f.params["client_secret"] = ENV["GITHUB_CLIENT_SECRET"]
       f.adapter Faraday.default_adapter
       f.params[:access_token]  = user.oauth_token
+
     end
   end
 
-  def follower_count
+  def followers
     get_json('/user/followers')
-    # get_json("/users/#{user.username}")[:followers]
   end
 
-  def following_count
+  def following
     get_json('/user/following')
-    # get_json("/users/#{user.username}")[:following]
   end
 
   def find_starred_repos
-    # get_json("/users/#{@user.username}/starred")
     get_json("/user/starred")
+  end
+
+  def user_repos
+    get_json('/user/repos?page=1&per_page=100')
+  end
+
+  def user_organizations
+    get_json('/user/orgs')
+  end
+
+  def user_received_events
+    get_json("/users/#{user.username}/received_events?page=1&per_page=100")
+  end
+
+  def user_events
+    get_json("/users/#{user.username}/events?page=1&per_page=100")
   end
 
   private

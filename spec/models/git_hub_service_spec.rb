@@ -11,18 +11,18 @@ RSpec.describe GitHubService do
   end
 
   describe "class methods" do
-    describe "#follower_count" do
+    describe "#followers" do
       it 'returns a users follower count' do
-        VCR.use_cassette("git_hub_service/follower_count", :match_requests_on => [:method]) do
-          expect(github.follower_count.count).to eq(2)
+        VCR.use_cassette("git_hub_service/followers", :match_requests_on => [:method]) do
+          expect(github.followers.count).to eq(2)
         end
       end
     end
 
-    describe "#following_count" do
+    describe "#following" do
       it "returns the number of following" do
-        VCR.use_cassette("git_hub_service/following_count", :match_requests_on => [:method]) do
-          expect(github.following_count.count).to eq(0)
+        VCR.use_cassette("git_hub_service/following", :match_requests_on => [:method]) do
+          expect(github.following.count).to eq(0)
         end
       end
     end
@@ -31,6 +31,38 @@ RSpec.describe GitHubService do
       it "returns the starred repos" do
         VCR.use_cassette("git_hub_service/find_starred_repos", :match_requests_on => [:method]) do
           expect(github.find_starred_repos.count).to eq(15)
+        end
+      end
+    end
+
+    describe "#user_repos" do
+      it 'returns a users repos' do
+        VCR.use_cassette('git_hub_service/user_repos', :match_requests_on => [:method]) do
+          expect(github.user_repos.length).to eq(91)
+        end
+      end
+    end
+
+    describe "#user_organizations" do
+      it "returns a users organizations" do
+        VCR.use_cassette('git_hub_service/user_organization', :match_requests_on => [:method]) do
+          expect(github.user_organizations.length).to eq(0)
+        end
+      end
+    end
+
+    describe "#user_received_events" do
+      it "returns a users events" do
+        VCR.use_cassette('git_hub_service/user_received_events', :match_requests_on => [:method]) do
+          expect(github.user_received_events.length).to eq(98)
+        end
+      end
+    end
+
+    describe "#user_events" do
+      it "returns a users events" do
+        VCR.use_cassette('git_hub_service/user_events', :match_requests_on => [:method]) do
+          expect(github.user_events.length).to eq(100)
         end
       end
     end
