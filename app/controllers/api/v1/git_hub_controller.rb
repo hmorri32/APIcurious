@@ -1,6 +1,7 @@
 class Api::V1::GitHubController < ApplicationController
   def user
     json_response({
+      nickname:   current_user.nickname,
       username:   current_user.username,
       avatar_url: current_user.avatar_url
     })

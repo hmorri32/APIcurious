@@ -50,7 +50,7 @@ class Hello extends Component {
   }
 
   setUserEvents() {
-    fetcher.userEvents().then(json => this.setState({ user_events: json }))
+    fetcher.userEvents().then(json => this.setState({ user_events: json }));
   }
 
   componentWillMount() {
@@ -67,6 +67,16 @@ class Hello extends Component {
     followers.map(follower => {});
   }
 
+  renderContributionChart() {
+    const {nickname} = this.state.user
+    return (
+      <div>
+        <h2>Contributions in the past year</h2>
+        <img src={"http://ghchart.rshah.org/409ba5/" + nickname} />
+      </div>
+    )
+  }
+
   renderUserInfo() {
     const { user } = this.state;
     return (
@@ -81,6 +91,7 @@ class Hello extends Component {
     return (
       <div className="background-city">
         {this.state.user && this.renderUserInfo()}
+        {this.state.user && this.renderContributionChart()}
       </div>
     );
   }
