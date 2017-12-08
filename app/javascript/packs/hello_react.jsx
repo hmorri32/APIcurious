@@ -6,6 +6,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import PropTypes from "prop-types";
+import * as fetcher from "./fetch.js";
 import "../stylesheets/stuff.scss";
 
 class Hello extends Component {
@@ -17,37 +18,27 @@ class Hello extends Component {
     };
   }
 
-  fetchFollowerCount() {
-    fetch("/api/v1/followers", {
-      credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      method: "GET"
-    })
-      .then(response => response.json())
-      .then(json => this.setState({ followers: json }))
-      .catch(e => console.log(e));
+  setFollowers() {
+    fetcher.followers().then(json => this.setState({ followers: json }))
   }
 
-  fetchUserJSON() {
-    fetch("/api/v1/user", {
-      credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      method: "GET"
-    })
-      .then(response => response.json())
-      .then(json => this.setState({ user: json }))
-      .catch(e => console.log(e));
+  setUser() {
+    fetcher.user().then(json => this.setState({ user: json }))
+  }
+
+  setFollowing() {
+    fetcher.following().then(json => this.setState({ following: json }))
+  }
+
+  setStarredRepos() {
+    fetcher.starredRepos().then(json => this.setState({ starred_repos: json }))
   }
 
   componentWillMount() {
-    this.fetchFollowerCount();
-    this.fetchUserJSON();
+    this.setUser();
+    this.setFollowers();
+    this.setFollowing();
+    this.setStarredRepos();
   }
 
   mapFollowers() {
