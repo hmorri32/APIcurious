@@ -45,3 +45,51 @@ export const starredRepos = () => {
   })
   .then(response => response.json())
 }
+
+export const userRepos = () => {
+  return fetch("/api/v1/user_repos", {
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    method: "GET"
+  })
+  .then(response => response.json())
+}
+
+export const userOrganizations = () => {
+  return fetch("/api/v1/user_organizations", {
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    method: "GET"
+  })
+  .then(response => response.json())
+}
+
+export const receivedEvents = () => {
+  return fetch("/api/v1/received_events", {
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    method: "GET"
+  })
+  .then(response => response.json())
+}
+
+export const userEvents = () => {
+  return fetch("/api/v1/user_events", {
+    credentials: "same-origin",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    method: "GET"
+  })
+  .then(response => response.json())
+}

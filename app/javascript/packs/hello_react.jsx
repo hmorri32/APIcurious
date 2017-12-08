@@ -13,25 +13,44 @@ class Hello extends Component {
   constructor() {
     super();
     this.state = {
-      name: "cool guy jones",
       followers: []
     };
   }
 
   setFollowers() {
-    fetcher.followers().then(json => this.setState({ followers: json }))
+    fetcher.followers().then(json => this.setState({ followers: json }));
   }
 
   setUser() {
-    fetcher.user().then(json => this.setState({ user: json }))
+    fetcher.user().then(json => this.setState({ user: json }));
   }
 
   setFollowing() {
-    fetcher.following().then(json => this.setState({ following: json }))
+    fetcher.following().then(json => this.setState({ following: json }));
   }
 
   setStarredRepos() {
-    fetcher.starredRepos().then(json => this.setState({ starred_repos: json }))
+    fetcher.starredRepos().then(json => this.setState({ starred_repos: json }));
+  }
+
+  setUserRepos() {
+    fetcher.userRepos().then(json => this.setState({ user_repos: json }));
+  }
+
+  setUserOrganizations() {
+    fetcher
+      .userOrganizations()
+      .then(json => this.setState({ user_organizations: json }));
+  }
+
+  setReceivedEvents() {
+    fetcher
+      .receivedEvents()
+      .then(json => this.setState({ received_events: json }));
+  }
+
+  setUserEvents() {
+    fetcher.userEvents().then(json => this.setState({ user_events: json }))
   }
 
   componentWillMount() {
@@ -39,6 +58,9 @@ class Hello extends Component {
     this.setFollowers();
     this.setFollowing();
     this.setStarredRepos();
+    this.setUserRepos();
+    this.setReceivedEvents();
+    this.setUserEvents();
   }
 
   mapFollowers() {
