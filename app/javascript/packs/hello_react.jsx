@@ -71,6 +71,7 @@ class Hello extends Component {
     const {nickname} = this.state.user
     return (
       <div>
+        <h1>Overview</h1>
         <h2>Contributions in the past year</h2>
         <img src={"http://ghchart.rshah.org/409ba5/" + nickname} />
       </div>
@@ -81,7 +82,7 @@ class Hello extends Component {
     const { user } = this.state;
     return (
       <div>
-        <p>{user.username}</p>
+        <h1>{user.username}</h1>
         <img src={user.avatar_url} alt="" />
       </div>
     );
@@ -92,6 +93,7 @@ class Hello extends Component {
       <div className="background-city">
         {this.state.user && this.renderUserInfo()}
         {this.state.user && this.renderContributionChart()}
+        <p className="todo">TODO: build the rest of the APP.</p>
       </div>
     );
   }
